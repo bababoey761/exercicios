@@ -12,7 +12,8 @@ def calcular_valor_venda(valor_compra):
     valor_venda = valor_compra * (lucro)
     return valor_venda
 
-
 valor_venda = calcular_valor_venda(valor_compra)
+valor_renda = (valor_venda) - (valor_compra)
 
 print(f"O valor de venda do produto é: R$ {valor_venda:.2f}")
+print(f"tendo como renda o valor: R$ {valor_renda:.2f}")
