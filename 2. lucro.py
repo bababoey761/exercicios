@@ -1,12 +1,12 @@
 valor_compra = float(input("Digite o valor de compra do produto: R$ ")) #Se é aplicando float em valor com (.) ou (,)
 
 def calcular_valor_venda(valor_compra):
-    if valor de compra <= 0 #Verifica se o valor é valido
-    print(Digite um valor valido!)
-    exit()
+    if valor_compra <= 0: #Verifica se o valor é valido
+        print("Digite um valor valido!")
+        exit()
 
     #Verifica as condições para a aplicação das porcentagens
-    elif valor_compra < 10.00:  
+    if valor_compra < 10.00:  
         lucro = 1.70 
     elif 10.00 <= valor_compra < 30.00:
         lucro = 1.50  
