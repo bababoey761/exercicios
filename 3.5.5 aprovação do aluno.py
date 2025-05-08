@@ -31,4 +31,12 @@ def media_notas():
 
 media = media_notas()
 
-print(f"A média das notas é: {media:.2f}")
+
+if media >= 7:
+    status = "aprovado"
+elif media >= 5:
+    status = "em recuperação"
+else: 
+    status = "reprovado"
+
+print(f"A média é {media:.2f} e o aluno está {status}.")
