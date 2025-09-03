@@ -1,4 +1,4 @@
-list = []
+list = {'n' ,'idade' ,'esp'}
 especiais = ["gestante", "pcd"]
 prioridade = False
 fila = []
@@ -44,7 +44,7 @@ def add():
                 continue
     else:
         contador +=1
-    list.append((n, idade, esp))
+    list.add((n) (idade) (esp))
     if prioridade:
         pos = contador_esp 
         prio = True
