@@ -1,80 +1,69 @@
-list = {'n' ,'idade' ,'esp'}
-especiais = ["gestante", "pcd"]
-prioridade = False
-fila = []
-porc = ()
+# uma fila (joaquim)
 
-def add():
+especiais = ["gestante", "pcd", "outro"]
+fila = []
+
+def add(): 
    contador = 0
    contador_esp = 0
    while True:
     especial = False
+    prioridade = False
     n = input('qual seu nome: ')
     idade = (input("digite sua idade: "))
     try: 
         idade = int(idade)
     except ValueError:
-        print("idade invalida porfavor tente novamente")
+        print("idade invalida por favor tente novamente")
         continue
-    if idade <= 59:
-        prioridade = False
-    elif idade >= 60:
+    if idade >= 60:
         prioridade = True
+        esp = "Acima de 60"
     while True:
         ness = input('você possui alguma necessidade? (escreva "n" para não ou "s" para sim): ').lower()
         if ness == "n":
             especial = False
-            esp = "normal"
             break
         elif ness == "s":
             especial = True
             break
         else:
-            print('resposta invalida, porfavor responda apenas com "n" para não ou "s" para sim: ')
+            print('resposta invalida, por favor responda apenas com "n" para não ou "s" para sim: ')
             continue
     if especial:
         contador_esp += 1
         while True:
-            esp = input('qual tipo de necessidade você tem? (gestante, pcd): ').lower()
+            esp = input('Porvafor digite qual sua necessidade (gestante, pcd ou outro): ').lower()
             if esp in especiais:
                 prioridade = True
                 break
             else:
                 print("Tipo de necessidade inválido. Tente novamente.")
                 continue
-    else:
+    elif not prioridade:
         contador +=1
-    list.add((n) (idade) (esp))
-    if prioridade:
-        pos = contador_esp 
-        prio = True
-        fila.append((prio, pos))
-    else:
-        pos = contador
-        prio= False
-        fila.append((prio, pos))
-    if contador_esp >=1 and contador >=1:
-        porcentagem = 100 / ((contador_esp + contador) / contador_esp)
-    elif contador >=1 and contador_esp == 0:
-        porcentagem = 100
-    elif contador == 0 and contador_esp >=1:
-        porcentagem = 100
-    global porc 
-    porc = porcentagem
-
+        esp = "nenhum"
+    fila.append((prioridade, len(fila), n, idade, esp))
     break
-
+   
 def mostrar():
-   m_fila()
-   print("\nFila de pessoas: \n")
-   print(list, "\n")
-def m_fila():
     fila.sort(reverse=True)
-    print(fila)
-    print(f"{porc}%")
+    print("\nFila de pessoas: \n")
+    for i, pessoa in enumerate(fila, start=1):
+        print(f"{i} - {pessoa[2]} - Idade: {pessoa[3]} - Necessidade: {pessoa[4]} - Prio: {'Sim' if pessoa[0] else 'Não'}")
+    
+    priori = sum(1 for pessoa in fila if pessoa[0])
+    porcentagem = (priori / len(fila)) * 100
+
+    print(f"\n    {porcentagem}% são prioritários")
+def m_fila():
+    #debug da fila
+    fila.sort(reverse=True)
+    print (fila)
+
 def menu():
    while True:
-      print(f"MENU\n")
+      print(f"\n -----------// MENU //-----------\n")
       print("1 - Adicionar pessoa na fila")
       print("2 - mostrar fila")
       print("3 - Sair")
